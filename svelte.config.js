@@ -3,7 +3,9 @@ import adapter from '@sveltejs/adapter-vercel';
 
 const config = {
 	kit: {
-		adapter: adapter()
+		adapter: adapter({
+			runtime: 'nodejs18.x'
+		})
 	},
 	preprocess: vitePreprocess()
 };
