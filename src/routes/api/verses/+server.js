@@ -1,16 +1,17 @@
 import { json } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
-import { addVerse } from '$lib/server/verse';
+import { addVerse, getVerses } from '$lib/server/verse';
 
 export async function GET({ locals }) {
 	const { id } = locals.user;
 
-	const verses = await prisma.verse.findMany({
-		where: { authorId: id },
-		orderBy: [{ id: 'desc' }]
-	});
+	try {
+		const verses = await getVerses(id);
 
-	return json(verses);
+		return json(verses);
+	} catch (error) {
+		return json(error);
+	}
 }
 
 export async function POST({ request, locals }) {
@@ -19,6 +20,10 @@ export async function POST({ request, locals }) {
 
 	const { ref, passage } = body;
 
-	const verse = await addVerse(ref, passage, user);
-	return json(verse, { success: true });
+	try {
+		const verse = await addVerse(ref, passage, user);
+		return json(verse, { success: true });
+	} catch (error) {
+		return json(error);
+	}
 }

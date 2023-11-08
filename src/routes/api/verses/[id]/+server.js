@@ -4,15 +4,23 @@ import { getVerseById, toggleMemorizedVerse } from '$lib/server/verse';
 export async function GET(event) {
 	const { id } = event.params;
 
-	const verse = await getVerseById(Number(id));
+	try {
+		const verse = await getVerseById(Number(id));
 
-	return json(verse);
+		return json(verse);
+	} catch (error) {
+		return json(error);
+	}
 }
 
 export async function PATCH(event) {
 	const { memorized } = await event.request.json();
 	const { id } = event.params;
 
-	const updatedVerse = await toggleMemorizedVerse(Number(id), memorized);
-	return json(updatedVerse);
+	try {
+		const updatedVerse = await toggleMemorizedVerse(Number(id), memorized);
+		return json(updatedVerse);
+	} catch (error) {
+		return json(error);
+	}
 }
