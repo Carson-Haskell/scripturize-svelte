@@ -23,7 +23,7 @@ export const handle = async ({ event, resolve }) => {
 				event.locals.user = user;
 			}
 		} catch (error) {
-			console.log(error);
+			console.log('No user');
 		}
 	}
 	return await resolve(event);
