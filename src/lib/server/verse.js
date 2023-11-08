@@ -11,16 +11,18 @@ export const addVerse = async (ref, passage, user) => {
 				authorId: user.id
 			}
 		});
-
 		return verse;
 	} catch (error) {
-		return error;
+		return console.log('error');
 	}
 };
 
 export const getVerses = async (userId) => {
 	try {
-		const verses = await prisma.verse.findMany({ where: { authorId: userId } });
+		const verses = await prisma.verse.findMany({
+			where: { authorId: userId },
+			orderBy: { id: 'desc' }
+		});
 
 		return verses;
 	} catch (error) {
