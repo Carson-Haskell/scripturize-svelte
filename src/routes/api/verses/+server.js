@@ -1,6 +1,5 @@
 import { json } from '@sveltejs/kit';
-import prisma from '$lib/server/prisma';
-import { addVerse, getVerses } from '$lib/server/verse';
+import { addVerse, getVerses } from '$lib/server/verse.js';
 
 export async function GET({ locals }) {
 	const { id } = locals.user;

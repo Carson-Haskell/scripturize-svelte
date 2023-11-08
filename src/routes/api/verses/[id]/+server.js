@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { getVerseById, toggleMemorizedVerse } from '$lib/server/verse';
+import { getVerseById, toggleMemorizedVerse } from '$lib/server/verse.js';
 
 export async function GET(event) {
 	const { id } = event.params;

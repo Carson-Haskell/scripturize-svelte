@@ -1,4 +1,4 @@
-import { searchVerse } from '$lib/server/verse';
+import { searchVerse } from '$lib/server/verse.js';
 import { json } from '@sveltejs/kit';
 
 export async function POST(event) {
